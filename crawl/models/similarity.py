@@ -8,14 +8,14 @@ from utility.models import BaseModel
 class MovieSimilarity(BaseModel):
 
     the_case = models.ForeignKey(
-        to="crwal.MovieCode",
+        to="crawl.MovieCode",
         related_name="more_like_this",
         on_delete=models.CASCADE,
         verbose_name="فیلم مربوطه",
     )
 
     is_similar_to = models.ForeignKey(
-        to="crwal.MovieCode",
+        to="crawl.MovieCode",
         related_name="similar_to",
         on_delete=models.CASCADE,
         verbose_name="فیلم مربوطه",

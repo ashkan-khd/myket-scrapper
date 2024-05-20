@@ -9,10 +9,10 @@ class MovieCodeDeserializer(Serializer):
     code = serializers.CharField(max_length=32)
 
     def create(self, validated_data):
-        return MovieCode.objects.get_or_create(
-            defaults=dict(code=validated_data["code"])
-        )
-
+        code = validated_data["code"]
+        if MovieCode.objects.filter(code=code).exists():
+            return MovieCode.objects.get(code=code)
+        return MovieCode.objects.create(code=code)
     class Meta:
         fields = [
             "code",

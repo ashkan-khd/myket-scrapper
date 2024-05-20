@@ -4,7 +4,7 @@ from client.views import GetMovieView, GetMovieCodeView, AskCrawlView
 
 urlpatterns = [
     path(
-        "movie/<str:code>",
+        "movie-code/<str:code>/",
         GetMovieCodeView.as_view(
             {
                 "get": "retrieve",
@@ -12,7 +12,7 @@ urlpatterns = [
         ),
     ),
     path(
-        "movie/<str:title>",
+        "movie/<str:title>/",
         GetMovieView.as_view(
             {
                 "get": "retrieve",

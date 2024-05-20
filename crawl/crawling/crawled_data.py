@@ -67,7 +67,7 @@ class CrawledMovie(CrawledData):
 
         for similar_code in self.similar_codes:
             sim_movie_code, _ = MovieCode.objects.get_or_create(
-                defaults=dict(code=similar_code)
+                code=similar_code
             )
             MovieSimilarity.objects.create(
                 the_case=movie_code,

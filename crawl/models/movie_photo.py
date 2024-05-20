@@ -4,14 +4,14 @@ from utility.random import rand_slug
 
 
 def movie_photo_upload_to(instance: "MoviePhoto", filename: str):
-    return f"crawl/movie_photo/movie-{str(instance.movie.id)}-{filename}-{rand_slug(8)}"
+    return f"crawl/movie_photo/movie-{str(instance.movie.id)}-{filename}"
 
 
 # TODO: Make sure to remove the photo file after deletion
 class MoviePhoto(BaseModel):
 
     movie = models.ForeignKey(
-        to="crwal.Movie",
+        to="crawl.Movie",
         related_name="photos",
         on_delete=models.CASCADE,
         verbose_name="فیلم مربوطه",
