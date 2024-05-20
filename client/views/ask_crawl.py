@@ -6,7 +6,8 @@ from crawl.models import MovieCode, Movie
 from crawl.serializers import MovieCodeDeserializer
 
 
-class AskCrawlAPI(CreateModelMixin, GenericViewSet):
+
+class AskCrawlView(CreateModelMixin, GenericViewSet):
     queryset = MovieCode.objects.all()
     permission_classes = api_settings.DEFAULT_PERMISSION_CLASSES + []
     serializer_class = MovieCodeDeserializer

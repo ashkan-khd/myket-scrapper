@@ -17,6 +17,6 @@ class GetMovieCodeView(RetrieveModelMixin, GenericViewSet):
 class GetMovieView(RetrieveModelMixin, GenericViewSet):
     queryset = Movie.objects.all()
     permission_classes = api_settings.DEFAULT_PERMISSION_CLASSES + []
-    lookup_field = "code"
-    lookup_url_kwarg = "code"
+    lookup_field = "title"
+    lookup_url_kwarg = "title"
     serializer_class = MovieSerializer
