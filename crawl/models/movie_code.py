@@ -1,3 +1,4 @@
+import typing
 from django.db import models
 from utility.models import (
     CreateHistoryModelMixin,
@@ -5,6 +6,10 @@ from utility.models import (
     BaseModel,
 )
 from utility.models import Choices
+
+if typing.TYPE_CHECKING:
+    from crawl.crawling import MovieCodeCrawler
+    
 
 
 class MovieCode(CreateHistoryModelMixin, SoftDeleteModelMixin, BaseModel):
@@ -27,9 +32,14 @@ class MovieCode(CreateHistoryModelMixin, SoftDeleteModelMixin, BaseModel):
         db_index=True,
     )
 
-    @property
-    def imdb_url(self) -> str:
-        return f"https://www.imdb.com/title/{self.code}/"
+    last_crawl = models.DateTimeField(
+        verbose_name='زمان آخرین کرال',
+        null=True, blank=True,
+    )
+
+    def get_crawler(self) -> 'MovieCodeCrawler':
+        from crawl.crawling import MovieCodeCrawler
+        return MovieCodeCrawler(self)
 
     class Meta:
         verbose_name = ""
